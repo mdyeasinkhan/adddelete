@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Bubble</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .list{
+            font-size: 28px;
+            padding: 5px;
+            color: red;
+            margin: 5px;
+            background-color: rgba(255, 0, 0, 0.109);
+            
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>List of item</h1>
+        <ul id="items">
+            <li class="list">Lorem ipsum dolor,</li>
+            <li class="list">sit amet consectetur</li>
+            <li class="list">adipisicing elit. Nesciunt</li>
+            <li class="list">perspiciatis eius maiores.</li>
+            <li class="list">ipsam velit, vitae </li>
+        </ul>
+        <button type="button" class="btn btn-danger" id="btn">Add Item</button>
+    </div>
+    <script>
+        let allList = document.querySelectorAll(".list");
+        for(const list of allList){
+            list.addEventListener("click", function(event){
+                // console.log(event.target)
+                // document.getElementById("items").removeChild(list)
+                event.target.parentNode.removeChild(event.target)
+                
+                
+            });
+        }
+        let btn = document.getElementById("btn");
+
+        btn.addEventListener("click", function(){
+            // let li = document.createElement("li");
+            // li.classList.add("list");
+            // li.innerText = "New list is created by eshad";
+
+            // Easy method for add list
+            let items = document.getElementById("items");
+            items.innerHTML += `<li class="list">New list is created by md</li>`;
+
+        })
+
+        document.getElementById("items").addEventListener("click", function(event){
+            event.target.parentNode.removeChild(event.target)
+        })
+        // for(let i = 0; i < allList.length; i++){
+        //     console.log(allList[i]);
+        // }
+
+    //     let container = document.querySelector(".container")
+    //     container.addEventListener("click", function(){
+    //         console.log("Container is clicked!!")
+    //     })
+
+    //     document.querySelector(".new-list").addEventListener("click", function(et){
+    //         console.log("new list is Clicked!!!")
+    //         event.stopPropagation();
+    //     })
+    //   let item = document.querySelector(".items");
+    //   item.addEventListener("click", function(){
+    //       console.log("Ul Items is clickeed!!!!!!!!");
+    //   })
+
+    </script>
+</body>
+</html>
